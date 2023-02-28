@@ -14,6 +14,7 @@ $pagina.onload = () => {
 
 const $botonTodosLosPokemones = document.querySelector(".todos-los-pokemones");
 $botonTodosLosPokemones.onclick = () => {
+  ocultarMensajeError();
   eliminarTarjetasAnteriores();
   mostrarAnimacionCarga();
   pokemonAMostrar = 1;
@@ -24,8 +25,11 @@ $botonTodosLosPokemones.onclick = () => {
   mostrarBotonCargarMasPokemones();
 };
 
-const $botonCargarMasPokemones = document.querySelector("#cargar-mas-pokemones");
+const $botonCargarMasPokemones = document.querySelector(
+  "#cargar-mas-pokemones"
+);
 $botonCargarMasPokemones.onclick = () => {
+  ocultarMensajeError();
   mostrarAnimacionCarga();
   mostrarPokemones();
   limitePokemonesAMostrar += 20;
@@ -46,13 +50,16 @@ function mostrarPokemones() {
         if (respuesta.ok) {
           return respuesta.json();
         }
-        throw new Error("No se pudo encontrar el Pokemon");
+        throw new Error();
       })
       .then((pokemon) => {
         crearTarjetaPokemon(pokemon);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        mostrarMensajeError();
+        ocultarAnimacionCarga();
+        pokemonAMostrar = 1;
+        limitePokemonesAMostrar = 20;
       });
   }
 }
@@ -71,7 +78,7 @@ function crearTarjetaPokemon(pokemon) {
   agregarColorFondoTarjeta($tarjetaPokemon, pokemon);
   agregarImagenPokemon($tarjetaPokemon, pokemon);
   agregarNombrePokemon($tarjetaPokemon, pokemon);
-  agregarBotonMasInformacion($tarjetaPokemon)
+  agregarBotonMasInformacion($tarjetaPokemon);
   $nodoPokemones.appendChild($tarjetaPokemon);
 }
 
@@ -104,17 +111,27 @@ function agregarBotonMasInformacion(tarjeta) {
 }
 
 function mostrarBotonCargarMasPokemones() {
-  document.querySelector('#cargar-mas-pokemones').classList.remove('oculto');
+  document.querySelector("#cargar-mas-pokemones").classList.remove("oculto");
 }
 
 function ocultarBotonCargarMasPokemonesPorTipo() {
-  document.querySelector('#cargar-mas-pokemones-por-tipo').classList.add('oculto');
+  document
+    .querySelector("#cargar-mas-pokemones-por-tipo")
+    .classList.add("oculto");
 }
 
 function mostrarAnimacionCarga() {
-  document.querySelector('#animacion-cargando img').classList.remove('oculto');
+  document.querySelector("#animacion-cargando img").classList.remove("oculto");
 }
 
 function ocultarAnimacionCarga() {
-  document.querySelector('#animacion-cargando img').classList.add('oculto');
+  document.querySelector("#animacion-cargando img").classList.add("oculto");
+}
+
+function mostrarMensajeError() {
+  document.querySelector('#mensaje-error').classList.remove('oculto');
+}
+
+function ocultarMensajeError() {
+  document.querySelector('#mensaje-error').classList.add('oculto');
 }
