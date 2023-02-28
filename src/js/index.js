@@ -7,13 +7,18 @@ let limitePokemonesAMostrar = 20;
 
 const $pagina = document.querySelector("body");
 $pagina.onload = () => {
+  desabilitarTemporalmenteBotonTodos();
+  desabilitarTemporalmenteBotonesTipo();
   mostrarPokemones();
   limitePokemonesAMostrar += 20;
   mostrarBotonCargarMasPokemones();
 };
 
 const $botonTodosLosPokemones = document.querySelector(".todos-los-pokemones");
-$botonTodosLosPokemones.onclick = () => {
+$botonTodosLosPokemones.onclick = manejarEventoTodosLosPokemones;
+
+function manejarEventoTodosLosPokemones() {
+  desabilitarTemporalmenteBotonTodos();
   ocultarMensajeError();
   eliminarTarjetasAnteriores();
   mostrarAnimacionCarga();
@@ -23,7 +28,14 @@ $botonTodosLosPokemones.onclick = () => {
   limitePokemonesAMostrar += 20;
   ocultarBotonCargarMasPokemonesPorTipo();
   mostrarBotonCargarMasPokemones();
-};
+}
+
+function desabilitarTemporalmenteBotonTodos() {
+  $botonTodosLosPokemones.onclick = null;
+  setTimeout(() => {
+    $botonTodosLosPokemones.onclick = manejarEventoTodosLosPokemones;
+  }, 2500)
+}
 
 const $botonCargarMasPokemones = document.querySelector(
   "#cargar-mas-pokemones"
@@ -122,11 +134,11 @@ function ocultarBotonCargarMasPokemonesPorTipo() {
 }
 
 function mostrarAnimacionCarga() {
-  document.querySelector("#animacion-cargando img").classList.remove("oculto");
+  document.querySelector("#animacion-cargando").classList.remove("invisible");
 }
 
 function ocultarAnimacionCarga() {
-  document.querySelector("#animacion-cargando img").classList.add("oculto");
+  document.querySelector("#animacion-cargando").classList.add("invisible");
 }
 
 function mostrarMensajeError() {

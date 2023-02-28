@@ -6,23 +6,34 @@ setTimeout(() => {
 
 function eventoTiposPokemones() {
   const $tiposPokemones = document.querySelector(".tipos-pokemones");
-  $tiposPokemones.onclick = (e) => {
-    const $elementoSeleccionado = e.target;
-    if (
-      $elementoSeleccionado.classList.contains("nav-item") &&
-      !$elementoSeleccionado.classList.contains("todos-los-pokemones")
-    ) {
-      pokemonAMostrar = 1;
-      limitePokemonesAMostrar = 20;
-      tipoPokemon = $elementoSeleccionado.textContent.toLowerCase();
-      ocultarMensajeError();
-      eliminarTarjetasAnteriores();
-      mostrarAnimacionCarga();
-      obtenerListaPokemones(tipoPokemon);
-      mostrarBotonCargarMasPokemonesPorTipo();
-      ocultarBotonCargarMasPokemones();
-    }
-  };
+  $tiposPokemones.onclick = manejarEventoTiposPokemones;
+}
+
+function manejarEventoTiposPokemones(e) {
+  const $elementoSeleccionado = e.target;
+  if (
+    $elementoSeleccionado.classList.contains("nav-item") &&
+    !$elementoSeleccionado.classList.contains("todos-los-pokemones")
+  ) {
+    desabilitarTemporalmenteBotonesTipo();
+    eliminarTarjetasAnteriores();
+    mostrarAnimacionCarga();
+    pokemonAMostrar = 1;
+    limitePokemonesAMostrar = 20;
+    tipoPokemon = $elementoSeleccionado.textContent.toLowerCase();
+    ocultarMensajeError();
+    obtenerListaPokemones(tipoPokemon);
+    mostrarBotonCargarMasPokemonesPorTipo();
+    ocultarBotonCargarMasPokemones();
+  }
+}
+
+function desabilitarTemporalmenteBotonesTipo() {
+  const $tiposPokemones = document.querySelector(".tipos-pokemones");
+  $tiposPokemones.onclick = null;
+  setTimeout(() => {
+    $tiposPokemones.onclick = manejarEventoTiposPokemones;
+  }, 2500)
 }
 
 const $botonCargarMasPokemonesPorTipo = document.querySelector(
