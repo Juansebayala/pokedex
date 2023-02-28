@@ -58,6 +58,7 @@ function mostrarPokemones() {
       .catch(() => {
         mostrarMensajeError();
         ocultarAnimacionCarga();
+        eliminarTarjetasAnteriores();
         pokemonAMostrar = 1;
         limitePokemonesAMostrar = 20;
       });
