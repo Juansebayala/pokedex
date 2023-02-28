@@ -42,6 +42,7 @@ function obtenerListaPokemones(tipoPokemon) {
     .catch(() => {
       mostrarMensajeError();
       ocultarAnimacionCarga();
+      eliminarTarjetasAnteriores();
     });
 }
 
@@ -69,6 +70,7 @@ function mostrarPokemonesPorTipo(listaPokemones) {
       .catch(() => {
         mostrarMensajeError();
         ocultarAnimacionCarga();
+        eliminarTarjetasAnteriores();
         pokemonAMostrar = 1;
         limitePokemonesAMostrar = 20;
       });
