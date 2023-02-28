@@ -4,7 +4,9 @@
   "description": "Segunda tarea de la clase 12 de r/Argentina-Programa",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "http-server",
+    "cypress-run": "cypress run",
+    "cypress-open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "homepage": "https://github.com/Juansebayala/pokedex#readme",
   "dependencies": {
     "bootstrap": "^5.2.3"
+  },
+  "devDependencies": {
+    "cypress": "^12.7.0"
   }
 }
