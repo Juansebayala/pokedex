@@ -10,6 +10,7 @@ $tiposPokemones.onclick = (e) => {
     pokemonAMostrar = 1;
     limitePokemonesAMostrar = 20;
     tipoPokemon = $elementoSeleccionado.textContent.toLowerCase();
+    ocultarMensajeError();
     eliminarTarjetasAnteriores();
     mostrarAnimacionCarga();
     obtenerListaPokemones(tipoPokemon);
@@ -22,6 +23,7 @@ const $botonCargarMasPokemonesPorTipo = document.querySelector(
   "#cargar-mas-pokemones-por-tipo"
 );
 $botonCargarMasPokemonesPorTipo.onclick = () => {
+  ocultarMensajeError();
   obtenerListaPokemones(tipoPokemon);
 };
 
@@ -31,14 +33,15 @@ function obtenerListaPokemones(tipoPokemon) {
       if (respuesta.ok) {
         return respuesta.json();
       }
-      throw new Error("No se pudo encontrar el Pokemon");
+      throw new Error();
     })
     .then((pokemones) => {
       const listaPokemones = pokemones.pokemon;
       mostrarPokemonesPorTipo(listaPokemones);
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => {
+      mostrarMensajeError();
+      ocultarAnimacionCarga();
     });
 }
 
@@ -58,13 +61,16 @@ function mostrarPokemonesPorTipo(listaPokemones) {
         if (respuesta.ok) {
           return respuesta.json();
         }
-        throw new Error("No se pudo encontrar el Pokemon");
+        throw new Error();
       })
       .then((pokemon) => {
         crearTarjetaPokemon(pokemon);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        mostrarMensajeError();
+        ocultarAnimacionCarga();
+        pokemonAMostrar = 1;
+        limitePokemonesAMostrar = 20;
       });
   }
   limitePokemonesAMostrar += 20;
