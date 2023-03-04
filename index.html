@@ -45,11 +45,7 @@
       </nav>
     </header>
     <main>
-      <div id="mensaje-error" class="alert alert-danger text-center oculto">Lo sentimos, no se han encontrado pokemones</div>
-      <div
-        id="pokemones"
-        class="d-flex align-content-around justify-content-center flex-wrap gap-3"
-      ></div>
+      <div id="pokemones" class="d-flex align-content-around justify-content-center flex-wrap gap-3"></div>
 
       <div id="animacion-cargando" class="d-flex justify-content-center invisible">
         <img src="src/img/pokeball.png" alt="pokeball-cargando">
@@ -91,14 +87,12 @@
         <button id="cargar-mas-pokemones-por-tipo" class="btn btn-light oculto">Cargar más pokemones</button>
       </div>
     </main>
-    <script src="src/js/boton-mas-informacion.js"></script>
-    <script src="src/js/index.js"></script>
-    <script src="src/js/tipos-pokemones.js"></script>
-  </body>
-  <footer class="fixed-bottom">
+    <footer class="fixed-bottom">
     <div id="reconocimientos" class="text-center">
       <p>Creado por Juan Sebastián Ayala</p>
       <p><a target="_blank" href="https://icons8.com/icon/cf5VAHkQsmvA/pokeball">Pokeball</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></p>
     </div>
   </footer>
+    <script src="src/js/index.js" type="module"></script>
+  </body>
 </html>
