@@ -4,9 +4,11 @@
   "description": "Segunda tarea de la clase 12 de r/Argentina-Programa",
   "main": "index.html",
   "scripts": {
-    "server": "http-server",
+    "server": "http-server -c-1",
     "cypress-run": "cypress run",
-    "cypress-open": "cypress open"
+    "cypress-open": "cypress open",
+    "test": "jest --collect-coverage",
+    "test:dev": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -22,9 +24,15 @@
     "bootstrap": "^5.2.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@types/jest": "^29.5.0",
+    "babel-jest": "^29.5.0",
     "cypress": "^12.7.0",
     "eslint": "^8.35.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-plugin-import": "^2.27.5",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
   }
 }

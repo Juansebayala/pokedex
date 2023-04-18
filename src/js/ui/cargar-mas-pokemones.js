@@ -1,6 +1,12 @@
-import { mostrarAnimacionCarga, mostrarPokemones } from './ui.js';
-import { obtenerListaPokemones, pedirPokemones } from './servicios.js';
-import { mostrarTiposPokemones } from './ui.botones-navbar.js';
+import {
+  mostrarAnimacionCarga,
+  mostrarPokemones,
+  crearTarjetaPokemon,
+} from './principal.js';
+import {
+  obtenerListaPokemones,
+  pedirPokemones,
+} from '../servicios/servicios.js';
 
 function ocultarMensajeError() {
   document.querySelector('#mensaje-error').classList.add('oculto');
@@ -11,13 +17,21 @@ export function mostrarBotonCargarMasPokemones() {
 }
 
 export function activarBotonCargarMasPokemones() {
-  const $botonCargarMasPokemones = document.querySelector('#cargar-mas-pokemones');
+  const $botonCargarMasPokemones = document.querySelector(
+    '#cargar-mas-pokemones'
+  );
   $botonCargarMasPokemones.onclick = () => {
     ocultarMensajeError();
     mostrarAnimacionCarga();
     mostrarPokemones();
   };
   mostrarBotonCargarMasPokemones();
+}
+
+function mostrarTiposPokemones(pokemones) {
+  pokemones.forEach((pokemon) => {
+    crearTarjetaPokemon(pokemon);
+  });
 }
 
 async function manejarCargarTiposPokemones() {
@@ -29,6 +43,8 @@ async function manejarCargarTiposPokemones() {
 }
 
 export function activarBotonCargarMasTiposPokemones() {
-  const $botonCargarMasPokemonesPorTipo = document.querySelector('#cargar-mas-pokemones-por-tipo');
+  const $botonCargarMasPokemonesPorTipo = document.querySelector(
+    '#cargar-mas-pokemones-por-tipo'
+  );
   $botonCargarMasPokemonesPorTipo.onclick = manejarCargarTiposPokemones;
 }

@@ -1,5 +1,5 @@
-import { pedirPokemonPorNombre } from './servicios.js';
-import { mostrarAnimacionCarga, ocultarAnimacionCarga } from './ui.js';
+import { pedirPokemonPorNombre } from '../servicios/servicios.js';
+import { mostrarAnimacionCarga, ocultarAnimacionCarga } from './principal.js';
 
 function cambiarColorFondoModal(pokemon) {
   const $contenidoModal = document.querySelector('.cuerpo-modal');
