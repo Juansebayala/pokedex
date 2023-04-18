@@ -1,6 +1,13 @@
-import { mostrarAnimacionCarga, mostrarPokemones, crearTarjetaPokemon } from './ui.js';
-import { mostrarBotonCargarMasPokemones } from './ui.cargar-mas-pokemones.js';
-import { obtenerListaPokemones, pedirPokemones } from './servicios.js';
+import {
+  mostrarAnimacionCarga,
+  mostrarPokemones,
+  crearTarjetaPokemon,
+} from './principal.js';
+import { mostrarBotonCargarMasPokemones } from './cargar-mas-pokemones.js';
+import {
+  obtenerListaPokemones,
+  pedirPokemones,
+} from '../servicios/servicios.js';
 
 function eliminarTarjetasAnteriores() {
   const $pokemones = document.querySelectorAll('.tarjeta');
@@ -10,7 +17,9 @@ function eliminarTarjetasAnteriores() {
 }
 
 function ocultarBotonCargarMasPokemonesPorTipo() {
-  document.querySelector('#cargar-mas-pokemones-por-tipo').classList.add('oculto');
+  document
+    .querySelector('#cargar-mas-pokemones-por-tipo')
+    .classList.add('oculto');
 }
 
 function manejarEventoTodosLosPokemones() {
@@ -22,12 +31,16 @@ function manejarEventoTodosLosPokemones() {
 }
 
 export function activarBotonTodosLosPokemones() {
-  const $botonTodosLosPokemones = document.querySelector('.todos-los-pokemones');
+  const $botonTodosLosPokemones = document.querySelector(
+    '.todos-los-pokemones'
+  );
   $botonTodosLosPokemones.onclick = manejarEventoTodosLosPokemones;
 }
 
 function mostrarBotonCargarMasPokemonesPorTipo() {
-  document.querySelector('#cargar-mas-pokemones-por-tipo').classList.remove('oculto');
+  document
+    .querySelector('#cargar-mas-pokemones-por-tipo')
+    .classList.remove('oculto');
 }
 
 function ocultarBotonCargarMasPokemones() {
@@ -43,8 +56,8 @@ export function mostrarTiposPokemones(pokemones) {
 async function manejarEventoTiposPokemones(e) {
   const $elementoSeleccionado = e.target;
   if (
-    $elementoSeleccionado.classList.contains('nav-item')
-    && !$elementoSeleccionado.classList.contains('todos-los-pokemones')
+    $elementoSeleccionado.classList.contains('nav-item') &&
+    !$elementoSeleccionado.classList.contains('todos-los-pokemones')
   ) {
     eliminarTarjetasAnteriores();
     mostrarAnimacionCarga();

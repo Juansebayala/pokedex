@@ -1,4 +1,4 @@
-import { pedirPokemones } from './servicios.js';
+import { pedirPokemones } from '../servicios/pokemones.js';
 
 export function mostrarAnimacionCarga() {
   document.querySelector('#animacion-cargando').classList.remove('invisible');
