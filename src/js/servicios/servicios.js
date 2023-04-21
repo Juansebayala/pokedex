@@ -20,7 +20,7 @@ async function pedirPokemonesPorID(pokemonAMostrar) {
     return false;
   }
   const IDPokemon = pokemonAMostrar;
-  const pokemon = await pedirPokemon(URL, IDPokemon);
+  const pokemon = await (pedirPokemon(URL, IDPokemon));
   return pokemon;
 }
 
@@ -61,9 +61,7 @@ export async function pedirPokemones(listaPokemones = false) {
 }
 
 export async function obtenerListaPokemones(tipoPokemon) {
-  const respuesta = await fetch(
-    `https://pokeapi.co/api/v2/type/${tipoPokemon}`
-  );
+  const respuesta = await fetch(`https://pokeapi.co/api/v2/type/${tipoPokemon}`);
   const pokemones = await respuesta.json();
   const listaPokemones = pokemones.pokemon;
   return listaPokemones;

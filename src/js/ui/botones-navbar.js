@@ -8,7 +8,6 @@ import {
   obtenerListaPokemones,
   pedirPokemones,
 } from '../servicios/servicios.js';
-import Pokemon from './pokemon.js';
 
 function eliminarTarjetasAnteriores() {
   const $pokemones = document.querySelectorAll('.tarjeta');
@@ -50,8 +49,7 @@ function ocultarBotonCargarMasPokemones() {
 
 export function mostrarTiposPokemones(pokemones) {
   pokemones.forEach((pokemon) => {
-    const datosPokemon = new Pokemon(pokemon);
-    crearTarjetaPokemon(datosPokemon);
+    crearTarjetaPokemon(pokemon);
   });
 }
 
