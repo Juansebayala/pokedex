@@ -8,10 +8,6 @@ import {
   pedirPokemones,
 } from '../servicios/servicios.js';
 
-function ocultarMensajeError() {
-  document.querySelector('#mensaje-error').classList.add('oculto');
-}
-
 export function mostrarBotonCargarMasPokemones() {
   document.querySelector('#cargar-mas-pokemones').classList.remove('oculto');
 }
@@ -21,7 +17,6 @@ export function activarBotonCargarMasPokemones() {
     '#cargar-mas-pokemones'
   );
   $botonCargarMasPokemones.onclick = () => {
-    ocultarMensajeError();
     mostrarAnimacionCarga();
     mostrarPokemones();
   };
