@@ -79,6 +79,13 @@ function mostrarModalMasInformacion() {
   modalMasInformacion.classList.remove('oculto');
 }
 
+function cerrarModalMasInformacion(e) {
+  const $elementoSeleccionado = e.target;
+  if ($elementoSeleccionado.classList.contains('contenedor')) {
+    modalMasInformacion.classList.add('oculto');
+  }
+}
+
 async function manejarModalMasInformacion(pokemon) {
   cambiarColorFondoModal(pokemon);
   agregarImagenPokemonModal(pokemon);
@@ -88,15 +95,8 @@ async function manejarModalMasInformacion(pokemon) {
   agregarPesoPokemon(pokemon);
   agregarHabilidadesPokemon(pokemon);
   mostrarModalMasInformacion();
+  modalMasInformacion.onclick = cerrarModalMasInformacion;
 }
-
-function cerrarModalMasInformacion(e) {
-  const $elementoSeleccionado = e.target;
-  if ($elementoSeleccionado.classList.contains('contenedor')) {
-    modalMasInformacion.classList.add('oculto');
-  }
-}
-modalMasInformacion.onclick = cerrarModalMasInformacion;
 
 async function manejarMasInformacion(e) {
   const $elemento = e.target;
