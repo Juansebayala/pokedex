@@ -1,4 +1,5 @@
 import { pedirPokemones } from '../servicios/servicios.js';
+import Pokemon from './pokemon.js';
 
 export function mostrarAnimacionCarga() {
   document.querySelector('#animacion-cargando').classList.remove('invisible');
@@ -9,22 +10,20 @@ export function ocultarAnimacionCarga() {
 }
 
 function agregarColorFondo(tarjeta, pokemon) {
-  const clasificacionesPokemon = Object.values(pokemon.types);
-  const tipoPrincipalPokemon = clasificacionesPokemon[0].type.name;
+  const tipoPrincipalPokemon = pokemon.tipos[0].type.name;
   tarjeta.classList.add(`type-${tipoPrincipalPokemon}`);
 }
 
 function agregarImagenPokemon(tarjeta, pokemon) {
   const $imagenPokemon = document.createElement('img');
-  const imagenPokemon = pokemon.sprites.other['official-artwork'].front_default;
-  $imagenPokemon.src = imagenPokemon;
+  $imagenPokemon.src = pokemon.imagen;
   $imagenPokemon.classList.add('imagen-pokemon');
   tarjeta.appendChild($imagenPokemon);
 }
 
 function agregarNombrePokemon(tarjeta, pokemon) {
   const nombrePokemon = document.createElement('p');
-  nombrePokemon.textContent = pokemon.name;
+  nombrePokemon.textContent = pokemon.nombre;
   nombrePokemon.classList.add('nombre-pokemon');
   tarjeta.appendChild(nombrePokemon);
 }
@@ -51,7 +50,8 @@ export function crearTarjetaPokemon(pokemon) {
 export async function mostrarPokemones() {
   const pokemones = await pedirPokemones();
   pokemones.forEach((pokemon) => {
-    crearTarjetaPokemon(pokemon);
+    const datosPokemon = new Pokemon(pokemon);
+    crearTarjetaPokemon(datosPokemon);
   });
 }
 
