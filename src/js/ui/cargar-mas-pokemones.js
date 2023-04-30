@@ -7,6 +7,7 @@ import {
   obtenerListaPokemones,
   pedirPokemones,
 } from '../servicios/servicios.js';
+import Pokemon from './pokemon.js';
 
 export function mostrarBotonCargarMasPokemones() {
   document.querySelector('#cargar-mas-pokemones').classList.remove('oculto');
@@ -25,7 +26,8 @@ export function activarBotonCargarMasPokemones() {
 
 function mostrarTiposPokemones(pokemones) {
   pokemones.forEach((pokemon) => {
-    crearTarjetaPokemon(pokemon);
+    const datosPokemon = new Pokemon(pokemon);
+    crearTarjetaPokemon(datosPokemon);
   });
 }
 
